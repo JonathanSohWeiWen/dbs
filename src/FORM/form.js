@@ -17,67 +17,49 @@ class Form extends React.Component {
     };
   }
 
-  // On file select (from the pop up) 
-  onFileChange = event => { 
-     
-    // Update the state 
-    this.setState({ selectedFile: event.target.files[0] }); 
-   
-  };
+  onChangeHandler=event=>{
 
-  // On file upload (click the upload button) 
-  onFileUpload = () => { 
-     
-    // Create an object of formData 
-    const formData = new FormData(); 
-   
-    // Update the formData object 
-    formData.append( 
-      "myFile", 
-      this.state.selectedFile, 
-      this.state.selectedFile.name 
-    ); 
-   
-    // Details of the uploaded file 
-    console.log(this.state.selectedFile);
-   
-    // Request made to the backend api 
-    // Send formData object 
-    axios.post("localhost:3000/uploadfile", formData); 
-  };
+    console.log(event.target.files[0])
 
-  // File content to be displayed after 
-    // file upload is complete 
-    fileData = () => { 
-     
-      if (this.state.selectedFile) { 
-          
-        return ( 
-          <div> 
-            <h2>File Details:</h2> 
-            <p>File Name: {this.state.selectedFile.name}</p> 
-            <p>File Type: {this.state.selectedFile.type}</p> 
-            <p> 
-              Last Modified:{" "} 
-              {this.state.selectedFile.lastModifiedDate.toDateString()} 
-            </p> 
-          </div> 
-        ); 
-      } else { 
-        return ( 
-          <div> 
-            <br /> 
-            <h4>Choose before Pressing the Upload button</h4> 
-          </div> 
-        ); 
-      } 
-    }; 
+  }
+  onChangeHandler=event=>{
+    this.setState({
+      selectedFile: event.target.files[0],
+      loaded: 0,
+    })
+  }
 
   myChangeHandler = (event) => {
     let nam = event.target.name;
     let val = event.target.value;
     this.setState({[nam]: val});
   }
+
+  onClickHandler = () => {
+    const data = new FormData()
+    if(this.state.selectedFile.size > 2097152 ) // 2097152 is 2 MegaByte
+    {
+      alert("File size uploaded is over the limit! Has to be 2MB or lower!");
+    }
+    else
+    {
+      if(this.state.selectedFile.type == "image/png" || this.state.selectedFile.type == "image/jpeg" || this.state.selectedFile.type == "image/jpg")
+      {
+        data.append('file', this.state.selectedFile)
+        axios.post("http://localhost:3001/upload", data, { // receive two parameter endpoint url ,form data 
+        })
+        .then(res => { // then print response status
+          console.log(res.statusText)
+          console.log(this.state.selectedFile.type)
+        })
+      }
+      else
+      {
+        alert("Please upload only jpg/jpeg/png image types only.");
+      }
+      
+    }
+}
 
   render() {
     return (
@@ -118,10 +100,8 @@ class Form extends React.Component {
             />
         
 		    <p>Image:</p>
-        <input type="file" onChange={this.onFileChange} /> 
-        <button onClick={this.onFileUpload}> 
-          Upload! 
-        </button>
+        <input type="file" onChange={this.onChangeHandler} /> 
+        <button type="button" class="btn btn-success btn-block" onClick={this.onClickHandler}>  Upload! </button>
 		    <p>Product Type:</p>
         </center>
       </form>
