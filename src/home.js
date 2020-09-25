@@ -66,11 +66,8 @@ function Home() {
 	} else if (!isLoaded) {
 		return <div>Loading...</div>;
 	} else {
-		if (token.length > 0) {
-			return <Redirect to='/Form' />;
-		} else {
-			return <div>{token}</div>;
-		}
+		return <div>{token}</div>;
+		//return <Redirect to='/Form' />;
 	}
 }
 
