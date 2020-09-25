@@ -6,17 +6,14 @@ class Form extends React.Component {
 	constructor(props) {
     super(props);
     this.state = {
-      custName: null,
+      custName: '',
     };
   }
 
-  handleChange(event) {
-    this.setState({value: event.target.custName});
-  }
-
-  handleSubmit(event) {
-    alert('A name was submitted: ' + this.state.custName);
-    event.preventDefault();
+  myChangeHandler = (event) => {
+    let nam = event.target.name;
+    let val = event.target.value;
+    this.setState({[nam]: val});
   }
 
   render() {
@@ -24,7 +21,11 @@ class Form extends React.Component {
       <form onSubmit={this.mySubmitHandler}>
         <h1>Please enter your data</h1>
         <p>Enter your name:</p>
-        <input type="text" value={this.state.custName} onChange={this.handleChange} />
+        <input
+          type='text'
+          name='custName'
+          onChange={this.myChangeHandler}
+        />
       </form>
     );
   }
