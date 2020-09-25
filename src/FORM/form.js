@@ -13,7 +13,7 @@ class Form extends React.Component {
 	  custNric: '',
 	  curTime : new Date().toLocaleString(),
     branchCode: '',
-    selectedFile: null
+	selectedFile: null
     };
   }
 
@@ -73,9 +73,12 @@ class Form extends React.Component {
       } 
     }; 
 
+	
+
   myChangeHandler = (event) => {
     let nam = event.target.name;
-    let val = event.target.value;
+	let val = event.target.value;
+	let res = this.menu.value;
     this.setState({[nam]: val});
   }
 
@@ -109,7 +112,7 @@ class Form extends React.Component {
               onChange={this.myChangeHandler}
             />
 		    <p>Register date and time (DD/MM/YYYY HH.MM.SS):</p>
-		    <p>Now time: {this.state.curTime}</p>
+		    <p>Current time: {this.state.curTime}</p>
             <p>Branch Code:</p>
             <input
               type='integer'
@@ -123,6 +126,15 @@ class Form extends React.Component {
           Upload! 
         </button>
 		    <p>Product Type:</p>
+			<select id = "dropdown" ref = {(input)=> this.menu = input}>
+    <option value="N/A">N/A</option>
+    <option value="137 : Investor">137 : Investor</option>
+    <option value="070 : Insurance">070 : Insurance</option>
+    <option value="291 : Loans">291 : Loans</option>
+    <option value="969 : Savings">969 : Savings</option>
+	<option value="555 : Credit Cards">555 : Credit Cards</option>
+	onChange={this.myChangeHandler}
+</select>
         </center>
       </form>
     );
