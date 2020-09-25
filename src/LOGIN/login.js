@@ -2,7 +2,7 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-function Form() {
+function Login() {
 	return (
 		<div className='App'>
 			<header className='App-header'>
@@ -22,13 +22,4 @@ function Form() {
 	);
 }
 
-export default Form;
-import React from 'react';
-import { render } from '@testing-library/react';
-import App from './App';
-
-test('renders learn react link', () => {
-	const { getByText } = render(<App />);
-	const linkElement = getByText(/learn react/i);
-	expect(linkElement).toBeInTheDocument();
-});
+export default Login;
