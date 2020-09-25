@@ -6,17 +6,11 @@ function Login() {
 	return (
 		<div className='App'>
 			<header className='App-header'>
-				<img src={logo} className='App-logo' alt='logo' />
-				<p>
-					Edit <code>src/App.js HELLO</code> and save to reload.
-				</p>
-				<a
-					className='App-link'
-					href='https://reactjs.org'
-					target='_blank'
-					rel='noopener noreferrer'>
-					Learn React
-				</a>
+				<form action="http://techtrek2020.ap-southeast-1.elasticbeanstalk.com/login" method="post">
+					<p>Username:</p><input type="text" id="username" name="username"/>
+					<p>Password:</p><input type="text" id="password" name="password"/>
+					<br/><input type="submit" value="Submit"/>
+			    </form>
 			</header>
 		</div>
 	);
