@@ -2,13 +2,13 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-function Router() {
+function Home() {
 	return (
 		<div className='App'>
 			<header className='App-header'>
 				<img src={logo} className='App-logo' alt='logo' />
 				<p>
-					Edit <code>src/App.js HELLO</code> and save to reload.
+					Edit <code>src/App.js FORM</code> and save to reload.
 				</p>
 				<a
 					className='App-link'
@@ -22,4 +22,4 @@ function Router() {
 	);
 }
 
-export default Router;
+export default Home;
