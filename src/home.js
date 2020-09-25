@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Redirect } from 'react-router';
 import './App.css';
 
 function Home() {
@@ -65,7 +66,11 @@ function Home() {
 	} else if (!isLoaded) {
 		return <div>Loading...</div>;
 	} else {
-		return <div>{token}</div>;
+		if (token.length > 0) {
+			return <Redirect to='/Form' />;
+		} else {
+			return <div>{token}</div>;
+		}
 	}
 }
 
